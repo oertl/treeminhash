@@ -1,0 +1,9 @@
+[submodule "bagminhash"]
+	path = bagminhash
+	url = https://github.com/oertl/bagminhash
+[submodule "dartminhash"]
+	path = dartminhash
+	url = https://github.com/oertl/dartminhash
+[submodule "wyhash"]
+	path = wyhash
+	url = https://github.com/wangyi-fudan/wyhash
