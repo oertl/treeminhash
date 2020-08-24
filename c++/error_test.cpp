@@ -139,7 +139,7 @@ int main(int argc, char* argv[]) {
 
     uint32_t hashSizes[] = {1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096};
 
-    uint64_t numIterations = 100;
+    uint64_t numIterations = 10000;
 
     vector<tmh::Weights> cases = {
         tmh::getWeightsCase_075be894225e78f7(),
