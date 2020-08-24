@@ -1,0 +1,5 @@
+.gradle
+.vscode
+c++/performance_test.out
+python/__pycache__
+c++/error_test.out
