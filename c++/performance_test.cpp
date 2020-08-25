@@ -124,7 +124,7 @@ template <typename DIST, typename GEN> void testDistribution(DIST&& dist, GEN& r
 
 int main(int argc, char* argv[]) {
 
-    uint64_t numCycles = 1;
+    uint64_t numCycles = 100;
 
     assert(argc==4);
     uint64_t seed = atol(argv[1]);
