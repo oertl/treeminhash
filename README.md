@@ -1,4 +1,4 @@
-# TreeMinHash
+# TreeMinHash: Fast Sketching for Weighted Jaccard Similarity Estimation
 
 TreeMinHash is a sketching algorithm for weighted sets. It is able to compute signatures that can be used for [weighted Jaccard similarity](https://en.wikipedia.org/wiki/Jaccard_index#Weighted_Jaccard_similarity_and_distance) estimation and [locality-sensitive hashing](https://en.wikipedia.org/wiki/Locality-sensitive_hashing). The algorithm requires multiple passes over the data and its time complexity is O(n + m log m) where n denotes the size of the weighted set (the number of elements with weight > 0) and m denotes the signature size (sketch size). 
 
@@ -6,9 +6,9 @@ TreeMinHash combines several ideas of recently proposed algorithms. It uses a tr
 
 ## Results
 
-We compared the performance of BagMinHash2 [1], DartMinHash [2], improved consistent weighted sampling (ICWS) [5], and TreeMinHash. The test setup was essentially the same as described in [4]. [The performance results](https://github.com/oertl/treeminhash/blob/master/paper/speed_charts.pdf) show that the calculation time of TreeMinHash is independent of the weight sum, unlike DartMinHash. Furthermore, TreeMinHash is always faster for very small input.
+We compared the performance of BagMinHash2 [1], DartMinHash [2], improved consistent weighted sampling (ICWS) [5], and TreeMinHash. The test setup was essentially the same as described in [4]. [The performance results](paper/speed_charts.pdf) show that the calculation time of TreeMinHash is independent of the weight sum, unlike DartMinHash. Furthermore, TreeMinHash is always faster for very small input.
 
-For verification we used synthetically generated weighted sets for which the weighted Jaccard similarity can be calculated in advance as described in [4]. [The results](https://github.com/oertl/treeminhash/blob/master/paper/error_charts.pdf) show that the relative empirical MSE for all tested algorithms is within the expected range.
+For verification we used synthetically generated weighted sets for which the weighted Jaccard similarity can be calculated in advance as described in [4]. [The results](paper/error_charts.pdf) show that the relative empirical MSE for all tested algorithms is within the expected range.
 
 ## References
 
@@ -22,4 +22,4 @@ For verification we used synthetically generated weighted sets for which the wei
 
 [4] Ertl, O. (2019). ProbMinHash--A Class of Locality-Sensitive Hash Algorithms for the (Probability) Jaccard Similarity. arXiv preprint arXiv:1911.00675. [[paper]](https://arxiv.org/abs/1911.00675) [[GitHub]](https://github.com/oertl/probminhash) 
 
-[5] Ioffe, S. (2010). Improved consistent sampling, weighted minhash and l1 sketching. In 2010 IEEE International Conference on Data Mining (pp. 246-255). IEEE. [[paper]](https://research.google/pubs/pub36928.pdf)
+[5] Ioffe, S. (2010). Improved consistent sampling, weighted minhash and l1 sketching. In 2010 IEEE International Conference on Data Mining (pp. 246-255). [[paper]](https://research.google/pubs/pub36928.pdf)
