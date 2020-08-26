@@ -12,7 +12,7 @@ For verification we used synthetically generated weighted sets for which the wei
 
 ## References
 
-[1] Ertl, O. (2018, July). Bagminhash-minwise hashing algorithm for weighted sets. In Proceedings of the 24th ACM SIGKDD International Conference on Knowledge Discovery & Data Mining (pp. 1368-1377). 
+[1] Ertl, O. (2018). Bagminhash-minwise hashing algorithm for weighted sets. In Proceedings of the 24th ACM SIGKDD International Conference on Knowledge Discovery & Data Mining (pp. 1368-1377). 
 [[paper]](https://arxiv.org/abs/1802.03914) [[GitHub]](https://github.com/oertl/bagminhash)
 
 [2] Christiani, T. (2020). DartMinHash: Fast Sketching for Weighted Sets. arXiv preprint arXiv:2005.11547. 
