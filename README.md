@@ -4,6 +4,8 @@ TreeMinHash is a sketching algorithm for weighted sets. It is able to compute si
 
 TreeMinHash combines several ideas of recently proposed algorithms. It uses a tree-like splitting of the weight domain as proposed by BagMinHash. Compared to TreeMinHash it uses a coarser weight discretization. To incorporate the values of the weights exactly, it uses rejection sampling as recently proposed by DartMinHash [2]. Furthermore, similar to DartMinHash, TreeMinHash estimates the stop limit in a first pass. In contrast, BagMinHash must update the stop limit permanently. We also use sampling without replacement for the selection of signature components as was already done before by SuperMinHash [3] and ProbMinHash [4].
 
+The slides of a recent presentation which also covered the basic ideas of TreeMinHash can be found on [SlideShare](https://www.slideshare.net/OtmarErtl/speeding-up-minwise-hashing-for-weighted-sets-239311360).
+
 ## Results
 
 We compared the performance of BagMinHash2 [1], DartMinHash [2], improved consistent weighted sampling (ICWS) [5], and TreeMinHash. The test setup was essentially the same as described in [4]. [The performance results](paper/speed_charts.pdf) show that the calculation time of TreeMinHash is independent of the weight sum, unlike DartMinHash. Furthermore, TreeMinHash is always faster for very small input.
