@@ -230,7 +230,7 @@ for row in range(0, 3):
         zScoreLowerLimit = [1. - zScoreLimit * calculateSigma(Jw, numIterations, xx) for xx in xForZScoreBand]
 
         ax.fill_between(xForZScoreBand, zScoreLowerLimit, zScoreUpperLimit,
-                        faceColor='#cccccc', edgeColor=None, label="{:}".format(probability*100) + r"\%$")
+                        color='#cccccc', edgeColor=None, label="{:}".format(probability*100) + r"\%")
 
         ax.set_title(r"$J_w=" + "{:10.3f}".format(Jw) + r"\quad W=" + pCaseDescription[1:], fontsize=10)
         algorithmDescriptions = getAlgorithmDescriptions(data, caseId)
