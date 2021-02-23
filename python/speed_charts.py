@@ -105,10 +105,7 @@ def drawChart(ax, data, hashSize, mode, isLastRow, isFirstCol):
     leg.get_frame().set_facecolor('none')
 
 hashSizes = [256, 1024, 4096]
-#hashSizes = [1024]
 modes = ["exp(1)","exp(1E30)","exp(1E-30)","exp(n)", "exp(n*1E6)", "exp(n*1E-6)"]
-#modes = ["exp(1)","exp(1E30)","weibull(0.1,1)"]
-#modes = ["exp(1)"]
 
 data = readData()
 
@@ -119,6 +116,7 @@ for i in range(0, len(hashSizes)):
     for j in range(0, len(modes)):
         drawChart(ax[i][j], data, hashSizes[i], modes[j], i + 1 == len(hashSizes), j == 0)
 
-fig.subplots_adjust(left=0.037, bottom=0.045, right=0.994, top=0.975, wspace=0.05, hspace=0.15)
+fig.subplots_adjust(left=0.025, bottom=0.045, right=0.994, top=0.975, wspace=0.05, hspace=0.15)
 fig.savefig("paper/speed_charts.pdf", format='pdf', dpi=1200, metadata={'creationDate': None})
+fig.savefig("paper/speed_charts.svg", format='svg', dpi=1200, metadata={'creationDate': None})
 plt.close(fig)

@@ -115,11 +115,6 @@ def getAlgorithmDescriptions(data, caseId):
         if (d[caseIdIdx] == caseId):
             result.add(d[algorithmDescriptionIdx])
 
-    #sortedAlgorithms = ["BagMinHash1", "BagMinHash2", "BagMinHash1a", "DartMinHash"]
-    #sortedAlgorithms = ["TreeMinHash1"]
-
-    #assert(sorted(sortedAlgorithms) == sorted(result))
-
     return sorted(result)
 
 
@@ -169,26 +164,7 @@ def getCaseDescription(caseId):
         if(d[caseIdIdx] == caseId):
             return d[caseDescriptionIdx].replace(r"\symTestCaseIndex", "u")
 
-def checkEqualResults(data, algorithmDescription1, algorithmDescription2):
-    caseIds = getCaseIds(data)
-    hashSizes = getHashSizes(data)
-    for caseId in caseIds:
-        for hashSize in hashSizes:
-            d1 = getDataItem(data, algorithmDescription1, caseId, hashSize)
-            d2 = getDataItem(data, algorithmDescription2, caseId, hashSize)
-            assert(((d1 is None) and (d2 is None)) or (d1[histogramDataIdx] == d2[histogramDataIdx]))
-
 headers, data = readData()
-
-equivalentAlgorithms = {}
-# equivalentAlgorithms = {
-#     "BagMinHash1" : "BagMinHash2", 
-#     "TreeMinHash1_NonStreaming" : "TreeMinHash1",
-#     "TreeMinHash1a2":"TreeMinHash1a",
-#     "TreeMinHash1a2":"TreeMinHash1a"}
-
-for alg1, alg2 in equivalentAlgorithms.items():
-    checkEqualResults(data, alg1, alg2)
 
 caseIds = getCaseIds(data)
 hashSizes = getHashSizes(data)
@@ -221,7 +197,6 @@ for row in range(0, 3):
         ax.set_ylim([0.5, 1.5])
         if isFirstCol:
             ax.set_ylabel(r"relative empirical MSE")
-            #ax.set_ylabel(r"$\text{empirical MSE}/(J_p(1-J_p)/m)$")
         if isLastRow:
             ax.set_xlabel(r"$m$")
         Jw = getJw(data, caseId)
@@ -235,10 +210,7 @@ for row in range(0, 3):
         ax.set_title(r"$J_w=" + "{:10.3f}".format(Jw) + r"\quad W=" + pCaseDescription[1:], fontsize=10)
         algorithmDescriptions = getAlgorithmDescriptions(data, caseId)
 
-        for algorithmDescription in algorithmDescriptions:
-            if (algorithmDescription in equivalentAlgorithms):
-                continue
-            
+        for algorithmDescription in algorithmDescriptions:            
             x = []
             y = []
             for hashSize in hashSizes:
@@ -249,21 +221,10 @@ for row in range(0, 3):
                     x.append(hashSize)
                     y.append(empiricalMSE / expectedMSE)
 
-            #ax.plot(x, y, marker='.', color=color_defs.colors[algorithmDescription], label=algorithmDescription.translate(str.maketrans({"_":  r"\_"})), linewidth=1)
             ax.plot(x, y, marker='.', label=algorithmDescription.translate(str.maketrans({"_":  r"\_"})), linewidth=1)
 
         handles, labels = ax.get_legend_handles_labels()
 
-        # while len(handles) < 10:
-        #     handles.append(plt.Line2D([],[], alpha=0))
-        #     labels.append('')
-        
-        # if isUnweighted(data, caseId):
-        #     order = [0,1,2,3,4,9,8,5,6,7]
-        # else:
-        #order = [0,1]
-
-        #leg = ax.legend([handles[idx] for idx in order],[labels[idx] for idx in order], loc='upper left', numpoints=1)
         leg = ax.legend(loc='upper right', numpoints=1)
 
         leg.get_frame().set_linewidth(0.0)
@@ -271,6 +232,7 @@ for row in range(0, 3):
 
 fig.subplots_adjust(left=0.034, bottom=0.045, right=0.994, top=0.975, wspace=0.05, hspace=0.15)
 fig.savefig("paper/error_charts.pdf", format='pdf', dpi=1200, metadata={'creationDate': None})
+fig.savefig("paper/error_charts.svg", format='svg', dpi=1200, metadata={'creationDate': None})
 plt.close(fig)
 
 exit(0)
