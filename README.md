@@ -8,9 +8,48 @@ The slides of a recent presentation which also covered the basic ideas of TreeMi
 
 ## Results
 
-We compared the performance of BagMinHash2 [1], DartMinHash [2], improved consistent weighted sampling (ICWS) [5], and TreeMinHash. The test setup was essentially the same as described in [4]. [The performance results](paper/speed_charts.pdf) show that the calculation time of TreeMinHash is independent of the weight sum, unlike DartMinHash. Furthermore, TreeMinHash is always faster for very small input.
+We compared the performance of BagMinHash2 [1], DartMinHash [2], improved consistent weighted sampling (ICWS) [5], and TreeMinHash. The test setup was essentially the same as described in [4]. 
 
-For verification we used synthetically generated weighted sets for which the weighted Jaccard similarity can be calculated in advance as described in [4]. [The results](paper/error_charts.pdf) show that the relative empirical MSE for all tested algorithms is within the expected range.
+
+The performance results below show that the calculation time of TreeMinHash is independent of the weight sum, unlike DartMinHash. Furthermore, TreeMinHash is always faster for very small input.
+
+![speed_charts.svg](paper/speed_charts.svg)
+
+For verification we used synthetically generated weighted sets for which the weighted Jaccard similarity can be calculated in advance as described in [4]. The results below show that the relative empirical MSE for all tested algorithms is within the expected (gray) range.
+
+![paper/error_charts.svg](paper/error_charts.svg)
+
+
+## Steps to reproduce the results and figures on Windows 10
+1. Install Windows Subsystem for Linux (WSL) with [Ubuntu 20.04 LTS](https://www.microsoft.com/store/productId/9N6SVWS3RX71)
+
+2. Install required packages:
+   ```
+   sudo apt install gradle g++ libboost-dev python3-matplotlib python3-scipy texlive-full
+   ```
+3. Clone repository including submodules:
+   ```
+   git clone --recursive https://github.com/oertl/treeminhash.git
+   ```
+4. Download and compile [xxHash](https://github.com/Cyan4973/xxHash) as needed by BagMinHash:
+   ```
+   cd treeminhash/bagminhash/c++/xxhash
+   wget https://github.com/Cyan4973/xxHash/archive/v0.8.0.zip
+   unzip v0.8.0.zip
+   cd xxHash-0.8.0
+   make lib
+   cp libxxhash.a ..
+   cp xxhash.h ..
+   cd ../../../..
+   ```
+5. Run simulations in `treeminhash` directory (takes several hours):
+   ```
+   gradle execute
+   ```
+6. Generate figures:
+   ```
+   gradle figures
+   ```
 
 ## References
 
