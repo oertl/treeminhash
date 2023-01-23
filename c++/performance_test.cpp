@@ -123,9 +123,8 @@ void testDistribution(DIST &&dist, GEN &rng, const string &distributionLabel,
 
   testCase(
       dataSize, hashSize, numCycles, testDataPair,
-      tmh::TreeMinHash<RNGFunction>(
-          hashSize, RNGFunction(UINT64_C(0x4859cb1af8987719)), 0.5,
-          std::numeric_limits<double>::max(), 0.9),
+      tmh::TreeMinHash<RNGFunction>(hashSize,
+                                    RNGFunction(UINT64_C(0x4859cb1af8987719))),
       distributionLabel, "TreeMinHash",
       [](uint64_t &aggregate, const vector<pair<uint64_t, double>> &result) {
         for (const auto &x : result)

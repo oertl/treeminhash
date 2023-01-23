@@ -193,9 +193,9 @@ template <typename RF> class TreeMinHash {
   std::vector<double> factors;
 
 public:
-  TreeMinHash(const uint32_t m, const RF &rngFunction, double factor = 0.5,
+  TreeMinHash(const uint32_t m, const RF &rngFunction,
               double max = std::numeric_limits<double>::max(),
-              double successProbabilityFirstRun = 0.9)
+              double factor = 0.5, double successProbabilityFirstRun = 0.9)
       : m(m), rngFunction(rngFunction), tree(preCalculateTree(factor, max)),
         numNonLeafNodes(tree.size() - (tree.size() + 1) / 2),
         initialLimitFactor(
@@ -207,6 +207,9 @@ public:
       factors[i] = static_cast<double>(m) / static_cast<double>(m - i - 1);
   }
 
+  // the second value in each pair of the result will be exponentially
+  // distributed with rate (weightSum / m^2), where weightSum is the sum over
+  // all weights of the input
   std::vector<std::pair<uint64_t, double>>
   operator()(const std::vector<std::pair<uint64_t, double>> &data,
              uint64_t *iterationCounter = nullptr) {
