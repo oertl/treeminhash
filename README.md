@@ -52,7 +52,7 @@ For verification we used synthetically generated weighted sets for which the wei
    ```
 
 ## Sketches for Inner Product Estimation
-It has been proposed to use weighted minwise hashing to create sketches for vectors that can be used for inner product estimation [6]. [inner_product_test.cpp](inner_product_test.cpp) demonstrates how TreeMinHash can be combined with their ideas. The result is a cleaner and probably faster algorithm, since discretization of the input vectors is not required as in the original approach.
+It has been proposed to use weighted minwise hashing to create sketches for vectors that can be used for inner product estimation [6]. [inner_product_test.cpp](c++/inner_product_test.cpp) demonstrates how TreeMinHash can be combined with their ideas. The result is a cleaner and probably faster algorithm, since discretization of the input vectors is not required as in the original approach.
 
 ## References
 
