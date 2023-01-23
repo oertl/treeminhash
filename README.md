@@ -51,6 +51,9 @@ For verification we used synthetically generated weighted sets for which the wei
    gradle figures
    ```
 
+## Sketches for Inner Product Estimation
+It has been proposed to use weighted minwise hashing to create sketches for vectors that can be used for inner product estimation [6]. [inner_product_test.cpp](inner_product_test.cpp) demonstrates how TreeMinHash can be combined with their ideas. The result is a cleaner and probably faster algorithm, since discretization of the input vectors is not required as in the original approach.
+
 ## References
 
 [1] Ertl, O. (2018). Bagminhash-minwise hashing algorithm for weighted sets. In Proceedings of the 24th ACM SIGKDD International Conference on Knowledge Discovery & Data Mining (pp. 1368-1377). 
@@ -64,3 +67,5 @@ For verification we used synthetically generated weighted sets for which the wei
 [4] Ertl, O. (2019). ProbMinHash--A Class of Locality-Sensitive Hash Algorithms for the (Probability) Jaccard Similarity. arXiv preprint arXiv:1911.00675. [[paper]](https://arxiv.org/abs/1911.00675) [[GitHub]](https://github.com/oertl/probminhash) 
 
 [5] Ioffe, S. (2010). Improved consistent sampling, weighted minhash and l1 sketching. In 2010 IEEE International Conference on Data Mining (pp. 246-255). [[paper]](https://research.google/pubs/pub36928.pdf)
+
+[6] Bessa, A., et al. (2023). Weighted Minwise Hashing Beats Linear Sketching for Inner Product Estimation. arXiv preprint arXiv:2301.05811. [[paper]](https://arxiv.org/abs/2301.05811)
