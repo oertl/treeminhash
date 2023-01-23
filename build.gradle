@@ -66,6 +66,20 @@ task buildErrorTestExecutable(type: Exec) {
     commandLine 'g++','-O3','-march=native', '-std=c++17','-fopenmp','-Wall',"${cppDir}/error_test.cpp","${bagCppDir}/xxhash/libxxhash.a",'-o',"${cppDir}/error_test.out"
 }
 
+task buildInnerProductTestExecutable(type: Exec) {
+    inputs.files \
+        "${cppDir}/inner_product_test.cpp", 
+        "${cppDir}/weighted_minwise_hashing.hpp",
+        "${cppDir}/bitstream_random.hpp",
+        "${cppDir}/data_generation.hpp",
+        "${cppDir}/exponential_distribution.hpp",
+        "${wyhashCppDir}/${wyhashHeaderFile}",
+        "${wyhashCppDir}/${wyhashHeaderFile}"
+    outputs.files "${cppDir}/inner_product_test.out"
+    standardOutput = new ByteArrayOutputStream()
+    commandLine 'g++','-O3','-march=native', '-std=c++17','-Wall',"${cppDir}/inner_product_test.cpp","${bagCppDir}/xxhash/libxxhash.a",'-o',"${cppDir}/inner_product_test.out"
+}
+
 def hashSizes = [256, 1024, 4096]
 def dataSizes = [1, 2, 5, 10, 20, 50, 100, 200, 500, 1000, 2000, 5000, 10000, 20000, 50000, 100000, 200000, 500000, 1000000 /*, 2000000, 5000000, 10000000*/]
 
@@ -152,5 +166,5 @@ task figures {
 }
 
 task buildAll {
-    dependsOn buildPerformanceTestExecutable, buildErrorTestExecutable
+    dependsOn buildPerformanceTestExecutable, buildErrorTestExecutable, buildInnerProductTestExecutable
 }
