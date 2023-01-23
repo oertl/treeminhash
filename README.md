@@ -20,7 +20,7 @@ For verification we used synthetically generated weighted sets for which the wei
 ![paper/error_charts.svg](paper/error_charts.svg)
 
 
-## Steps to reproduce the results and figures on Windows 11
+## Steps to Reproduce the Results and Figures on Windows 11
 1. Install Windows Subsystem for Linux (WSL) with [Ubuntu 22.04.1 LTS](https://apps.microsoft.com/store/detail/ubuntu-22041-lts/9PN20MSR04DW)
 
 2. Install required packages:
