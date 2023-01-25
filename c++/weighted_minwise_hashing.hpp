@@ -15,48 +15,6 @@
 
 namespace tmh {
 
-template <typename T> class MaxValueTracker {
-  const uint32_t m;
-  const uint32_t lastIndex;
-  const std::unique_ptr<T[]> values;
-
-public:
-  MaxValueTracker(uint32_t m)
-      : m(m), lastIndex((m << 1) - 2), values(new T[lastIndex + 1]) {}
-
-  void reset(const T &infinity) {
-    std::fill_n(values.get(), lastIndex + 1, infinity);
-  }
-
-  bool update(uint32_t idx, T value) {
-    assert(idx < m);
-    if (value < values[idx]) {
-      while (true) {
-        values[idx] = value;
-        const uint32_t parentIdx = m + (idx >> 1);
-        if (parentIdx > lastIndex)
-          break;
-        const uint32_t siblingIdx = idx ^ UINT32_C(1);
-        const T siblingValue = values[siblingIdx];
-        if (!(siblingValue < values[parentIdx]))
-          break;
-        if (value < siblingValue)
-          value = siblingValue;
-        idx = parentIdx;
-      }
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-  bool isUpdatePossible(T value) const { return value < values[lastIndex]; }
-
-  const T &operator[](uint32_t idx) const { return values[idx]; }
-
-  double max() const { return values[lastIndex]; }
-};
-
 template <typename I, typename W> I calculateMaxBoundIdx() {
   static_assert(sizeof(I) == sizeof(W),
                 "index type and weight type do not have same size");
@@ -208,7 +166,7 @@ public:
   }
 
   // the second value in each pair of the result will be exponentially
-  // distributed with rate (weightSum / m^2), where weightSum is the sum over
+  // distributed with rate (weightSum / m), where weightSum is the sum over
   // all weights of the input
   std::vector<std::pair<uint64_t, double>>
   operator()(const std::vector<std::pair<uint64_t, double>> &data,
