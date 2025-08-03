@@ -1,3 +1,5 @@
+[![DOI](https://zenodo.org/badge/289840729.svg)](https://doi.org/10.5281/zenodo.16730964)
+
 # TreeMinHash: Fast Sketching for Weighted Jaccard Similarity Estimation
 
 TreeMinHash is a sketching algorithm for weighted sets. It is able to compute signatures that can be used for [weighted Jaccard similarity](https://en.wikipedia.org/wiki/Jaccard_index#Weighted_Jaccard_similarity_and_distance) estimation and [locality-sensitive hashing](https://en.wikipedia.org/wiki/Locality-sensitive_hashing). The algorithm requires multiple passes over the data and its time complexity is O(n + m log m) where n denotes the size of the weighted set (the number of elements with weight > 0) and m denotes the signature size (sketch size). 
